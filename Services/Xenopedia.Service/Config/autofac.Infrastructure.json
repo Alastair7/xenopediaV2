@@ -1,0 +1,14 @@
+{
+    "components": [
+        {
+            "type": "Xenopedia.Infrastructure.Text, TextRepository",
+            "services": [
+                {
+                    "type": "Xenopedia.Infrastructure.Text, ITextRepository"
+                }
+            ],
+            "injectProperties": true,
+            "instanceScope": "per-life-time"
+        }
+    ]
+}

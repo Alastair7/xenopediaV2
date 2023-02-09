@@ -1,0 +1,14 @@
+{
+    "components": [
+        {
+            "type": "Xenopedia.Commons.Database, DatabaseManager",
+            "services": [
+                {
+                    "type": "Xenopedia.Commons.Database, IDatabaseManager"
+                }
+            ],
+            "injectProperties": true,
+            "instanceScope": "per-life-time"
+        }
+    ]
+}
