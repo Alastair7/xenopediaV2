@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xenopedia.Entities.Entity.Text;
 
 namespace Xenopedia.Infrastructure.Text
 {
-    internal interface ITextRepository
+    public interface ITextRepository
     {
+        Task<bool> InsertText(TextEntity text);
+
+        Task<TextEntity> GetTextById(long idText);
     }
 }
