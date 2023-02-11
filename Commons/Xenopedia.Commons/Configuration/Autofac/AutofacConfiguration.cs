@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Xenopedia.Commons.Configuration.Autofac
 {
-    public class AutofacConfiguration : IAutofacConfiguration
+    public class AutofacConfiguration : Module, IAutofacConfiguration
     {
         private readonly ConfigurationBuilder config;
 

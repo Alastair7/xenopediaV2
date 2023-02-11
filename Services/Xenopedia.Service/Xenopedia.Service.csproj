@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Commons\Xenopedia.Commons\Xenopedia.Commons.csproj" />
+    <ProjectReference Include="..\..\Entities\Xenopedia.Entities\Xenopedia.Entities.csproj" />
   </ItemGroup>
 
 </Project>
