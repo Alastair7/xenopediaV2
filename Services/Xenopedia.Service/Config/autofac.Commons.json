@@ -9,6 +9,16 @@
             ],
             "injectProperties": true,
             "instanceScope": "per-life-time"
+        },
+        {
+            "type": "Xenopedia.Commons.Autofac, AutofacConfiguration",
+            "services": [
+                {
+                    "type": "Xenopedia.Commons.Autofac, IAutofacConfiguration"
+                }
+            ],
+            "injectProperties": true,
+            "instanceScope": "per-life-time"
         }
     ]
 }

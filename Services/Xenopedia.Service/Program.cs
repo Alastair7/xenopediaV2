@@ -1,8 +1,9 @@
 using Autofac;
 using Autofac.Configuration;
+using Xenopedia.Commons.Configuration.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
-var config = new ConfigurationBuilder();
+AutofacConfiguration autofacConfig = new ();
 var containerBuilder = new ContainerBuilder();
 
 // Add services to the container.
@@ -15,8 +16,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure Autofac
-config.AddJsonFile("Config/autofac.json");
-var module = new ConfigurationModule(config.Build());
+var module = autofacConfig.LoadModules();
 containerBuilder.RegisterModule(module);
 
 // Configure the HTTP request pipeline.
