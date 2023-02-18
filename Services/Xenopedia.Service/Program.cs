@@ -1,14 +1,16 @@
 using Autofac;
 using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
-using Xenopedia.Commons.Configuration.Autofac;
+using System.Reflection;
+using Xenopedia.Service.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Configure Autofac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacModule()); });
-
+builder.Configuration.AddEnvironmentVariables()
+                     .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

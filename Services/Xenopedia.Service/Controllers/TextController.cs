@@ -16,9 +16,9 @@ namespace Xenopedia.Service.Controllers
         }
 
         [HttpGet("GetTextById")]
-        public async Task<IEnumerable<TextDTO>> GetTextById([FromQuery]long idText)
+        public async Task<TextDTO> GetTextById([FromQuery]long idText)
         {
-            IEnumerable<TextDTO> textDTO = await textService.GetTextById(idText);
+            TextDTO textDTO = await textService.GetTextById(idText);
             
             return textDTO;
         }

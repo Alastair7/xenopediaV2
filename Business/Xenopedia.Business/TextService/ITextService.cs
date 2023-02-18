@@ -6,6 +6,6 @@ namespace Xenopedia.Business.TextService
     {
         Task<IEnumerable<TextDTO>> GetAllText();
 
-        Task<IEnumerable<TextDTO>> GetTextById(long idText);
+        Task<TextDTO> GetTextById(long idText);
     }
 }
