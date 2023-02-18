@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Commons\Xenopedia.Commons\Xenopedia.Commons.csproj" />
+    <ProjectReference Include="..\..\Entities\Xenopedia.Entities\Xenopedia.Entities.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Xenopedia.Infrastructure\Xenopedia.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
