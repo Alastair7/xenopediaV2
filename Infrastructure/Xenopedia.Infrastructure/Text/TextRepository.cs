@@ -13,6 +13,20 @@ namespace Xenopedia.Infrastructure.Text
         {
             this.databaseManager = databaseManager;
         }
+
+        public async Task<IEnumerable<TextEntity>> GetAllText()
+        {
+            using var connection = new MySqlConnection(databaseManager.GetConnectionString());
+
+            IEnumerable<TextEntity>? result = null;
+
+            var sql = "SELECT * FROM text;";
+
+            result = await connection.QueryAsync<TextEntity>(sql);
+
+            return result;
+        }
+
         public async Task<TextEntity> GetTextById(long idText)
         {
             using var connection = new MySqlConnection(databaseManager.GetConnectionString());
