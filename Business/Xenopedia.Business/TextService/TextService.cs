@@ -15,9 +15,15 @@ namespace Xenopedia.Business.TextService
             this.textRepository = textRepository;
             this.textMapper = textMapper;
         }
-        public Task<IEnumerable<TextDTO>> GetAllText()
+        public async Task<IEnumerable<TextDTO>> GetAllText()
         {
-            throw new NotImplementedException();
+            IEnumerable<TextEntity> getTextAllEntities = await textRepository.GetAllText();
+
+            IEnumerable<TextDTO> getTextAllDto = getTextAllEntities
+                .Select(x => textMapper.TextEntityToTextDto(x));
+
+            return getTextAllDto;
+
         }
 
         public async Task<TextDTO> GetTextById(long idText)

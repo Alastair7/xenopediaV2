@@ -12,5 +12,7 @@ namespace Xenopedia.Infrastructure.Text
         Task<bool> InsertText(TextEntity text);
 
         Task<TextEntity> GetTextById(long idText);
+
+        Task<IEnumerable<TextEntity>> GetAllText();
     }
 }

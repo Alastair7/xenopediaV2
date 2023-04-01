@@ -22,5 +22,13 @@ namespace Xenopedia.Service.Controllers
             
             return textDTO;
         }
+
+        [HttpGet("GetTextAll")]
+        public async Task<IEnumerable<TextDTO>> GetTextAll()
+        {
+            IEnumerable<TextDTO> textAll = await textService.GetAllText();
+
+            return textAll;
+        }
     }
 }
