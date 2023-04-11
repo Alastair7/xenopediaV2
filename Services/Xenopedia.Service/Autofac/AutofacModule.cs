@@ -21,6 +21,7 @@ namespace Xenopedia.Service.Autofac
             builder.Register(context => new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TextEntity, TextDTO>();
+                cfg.CreateMap<NewTextRequestDTO, TextEntity>();
                 //etc...
             })).AsSelf().SingleInstance();
             builder.Register(m =>

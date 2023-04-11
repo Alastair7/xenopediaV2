@@ -34,5 +34,10 @@ namespace Xenopedia.Business.TextService
 
             return result;
         }
+
+        public async Task<TextBaseResponseDTO> AddNewText(NewTextRequestDTO newText)
+        {
+            TextEntity textToInsert = textMapper.NewTextRequestToTextEntity(newText);
+        }
     }
 }

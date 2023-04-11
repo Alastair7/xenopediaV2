@@ -13,6 +13,13 @@ namespace Xenopedia.Business.Mapper
             this.mapper = mapper;
         }
 
+        public TextEntity NewTextRequestToTextEntity(NewTextRequestDTO newText)
+        {
+            var result = mapper.Map<NewTextRequestDTO, TextEntity>(newText);
+
+            return result;
+        }
+
         public TextDTO TextEntityToTextDto(TextEntity textEntity)
         {
            var result = mapper.Map<TextEntity, TextDTO>(textEntity);

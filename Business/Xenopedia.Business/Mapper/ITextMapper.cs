@@ -6,5 +6,6 @@ namespace Xenopedia.Business.Mapper
     public interface ITextMapper
     {
         TextDTO TextEntityToTextDto(TextEntity textEntity);
+        TextEntity NewTextRequestToTextEntity(NewTextRequestDTO newText);
     }
 }

@@ -24,11 +24,26 @@ namespace Xenopedia.Service.Controllers
         }
 
         [HttpGet("GetTextAll")]
-        public async Task<IEnumerable<TextDTO>> GetTextAll()
+        public async Task<ActionResult<TextDTO>> GetTextAll()
         {
             IEnumerable<TextDTO> textAll = await textService.GetAllText();
 
-            return textAll;
+            if (textAll == null || !textAll.Any()) 
+            {
+                return (textAll == null) switch
+                {
+                    true => new BadRequestResult(),
+                    _ => Ok(new List<TextDTO>()),
+                };
+            }
+
+            return Ok(textAll);
+        }
+
+        [HttpPost("NewText")]
+        public async Task<ActionResult<TextBaseResponseDTO>> NewText(NewTextRequestDTO newTextRequest)
+        {
+            
         }
     }
 }

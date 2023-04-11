@@ -7,5 +7,7 @@ namespace Xenopedia.Business.TextService
         Task<IEnumerable<TextDTO>> GetAllText();
 
         Task<TextDTO> GetTextById(long idText);
+
+        Task<TextBaseResponseDTO> AddNewText(NewTextRequestDTO newText);
     }
 }
