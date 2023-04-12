@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Xenopedia.Commons.Database;
 using Xenopedia.Entities.Entity.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Xenopedia.Infrastructure.Text
 {
@@ -12,6 +13,18 @@ namespace Xenopedia.Infrastructure.Text
         public TextRepository(IDatabaseManager databaseManager) 
         {
             this.databaseManager = databaseManager;
+        }
+
+        public async Task<bool> DeleteText(long idText)
+        {
+            using var connection = new MySqlConnection("server=aws.connect.psdb.cloud;user=di6x5rp8ve6g5xm08utr;database=xenopedia_db;port=3306;password=pscale_pw_GonCS6PVOcXywfBSTtVgDjqnSKcJCAQMB2GtwfgGX2p;SslMode=VerifyFull");
+            bool deleted;
+
+            var sql = "DELETE text WHERE IdText = @idText";
+
+            deleted = await connection.ExecuteAsync(sql, new { idText }) > 0;
+
+            return deleted;
         }
 
         public async Task<IEnumerable<TextEntity>> GetAllText()
@@ -45,9 +58,21 @@ namespace Xenopedia.Infrastructure.Text
 
             var sql = "INSERT INTO text () VALUES ()";
 
-            inserted = await connection.ExecuteAsync(sql) > 0;
+            inserted = await connection.ExecuteAsync(sql, new { text }) > 0;
 
             return inserted;
+        }
+
+        public async Task<bool> TextExistsById(long idText)
+        {
+            using var connection = new MySqlConnection("server=aws.connect.psdb.cloud;user=di6x5rp8ve6g5xm08utr;database=xenopedia_db;port=3306;password=pscale_pw_GonCS6PVOcXywfBSTtVgDjqnSKcJCAQMB2GtwfgGX2p;SslMode=VerifyFull");
+            bool exists;
+
+            var sql = "SELECT EXISTS (SELECT 1 FROM text WHERE idText = @idText)";
+
+            exists = await connection.QueryFirstOrDefaultAsync<bool>(sql, new { idText });
+
+            return exists;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Xenopedia.Service.Controllers
         }
 
         [HttpPost("NewText")]
-        public async Task<ActionResult<TextBaseResponseDTO>> NewText(NewTextRequestDTO newTextRequest)
+        public async Task<ActionResult<TextBaseResponseDTO>> NewText([FromBody] NewTextRequestDTO newTextRequest)
         {
             TextBaseResponseDTO result;
 
@@ -50,9 +50,24 @@ namespace Xenopedia.Service.Controllers
 
             return result.Result switch
             {
-                TextResultCodes.ERROR => (ActionResult<TextBaseResponseDTO>)BadRequest(result),
-                TextResultCodes.SUCCESS => (ActionResult<TextBaseResponseDTO>)Ok(result),
-                _ => (ActionResult<TextBaseResponseDTO>)new BadRequestResult(),
+                TextResultCodes.ERROR => BadRequest(result),
+                TextResultCodes.SUCCESS => Ok(result),
+                _ => new BadRequestResult(),
+            };
+        }
+
+        [HttpDelete("DeleteText")]
+        public async Task<ActionResult<TextBaseResponseDTO>> DeleteText([FromQuery] long idText)
+        {
+            TextBaseResponseDTO result;
+
+            result = await textService.DeleteText(idText);
+
+            return result.Result switch
+            {
+                TextResultCodes.ERROR => BadRequest(result),
+                TextResultCodes.SUCCESS => Ok(result),
+                _ => new BadRequestResult(),
             };
         }
     }

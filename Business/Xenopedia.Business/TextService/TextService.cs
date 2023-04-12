@@ -49,5 +49,27 @@ namespace Xenopedia.Business.TextService
 
             return new TextBaseResponseDTO { Result = TextResultCodes.SUCCESS, Message = "SUCCESS" };
         }
+
+        public async Task<TextBaseResponseDTO> DeleteText(long idText)
+        {
+           bool exists = await textRepository.TextExistsById(idText);
+            bool deleted;
+
+            switch(exists) 
+            {
+                case true:
+                    deleted = await textRepository.DeleteText(idText);
+                    break;
+                case false:
+                    return new TextBaseResponseDTO { Result = TextResultCodes.ERROR, Message = "Text not found or already deleted." };
+            }
+
+            if (!deleted) 
+            { 
+                return new TextBaseResponseDTO { Result = TextResultCodes.ERROR, Message = "Error deleting text." };
+            };
+
+            return new TextBaseResponseDTO { Result = TextResultCodes.SUCCESS, Message = "SUCCESS" };
+        }
     }
 }

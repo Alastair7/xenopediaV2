@@ -9,5 +9,6 @@ namespace Xenopedia.Business.TextService
         Task<TextDTO> GetTextById(long idText);
 
         Task<TextBaseResponseDTO> AddNewText(NewTextRequestDTO newText);
+        Task<TextBaseResponseDTO> DeleteText(long idText);
     }
 }
