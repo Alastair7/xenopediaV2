@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Xenopedia.Business.TextService;
+using Xenopedia.Commons.Enums;
 using Xenopedia.Entities.DTO.Text;
 
 namespace Xenopedia.Service.Controllers
@@ -43,7 +44,16 @@ namespace Xenopedia.Service.Controllers
         [HttpPost("NewText")]
         public async Task<ActionResult<TextBaseResponseDTO>> NewText(NewTextRequestDTO newTextRequest)
         {
-            
+            TextBaseResponseDTO result;
+
+            result = await textService.AddNewText(newTextRequest);
+
+            return result.Result switch
+            {
+                TextResultCodes.ERROR => (ActionResult<TextBaseResponseDTO>)BadRequest(result),
+                TextResultCodes.SUCCESS => (ActionResult<TextBaseResponseDTO>)Ok(result),
+                _ => (ActionResult<TextBaseResponseDTO>)new BadRequestResult(),
+            };
         }
     }
 }

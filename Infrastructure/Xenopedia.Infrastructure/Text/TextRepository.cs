@@ -38,9 +38,16 @@ namespace Xenopedia.Infrastructure.Text
             return result;
         }
 
-        public Task<bool> InsertText(TextEntity text)
+        public async Task<bool> InsertText(TextEntity text)
         {
-            throw new NotImplementedException();
+            using var connection = new MySqlConnection("server=aws.connect.psdb.cloud;user=di6x5rp8ve6g5xm08utr;database=xenopedia_db;port=3306;password=pscale_pw_GonCS6PVOcXywfBSTtVgDjqnSKcJCAQMB2GtwfgGX2p;SslMode=VerifyFull");
+            bool inserted;
+
+            var sql = "INSERT INTO text () VALUES ()";
+
+            inserted = await connection.ExecuteAsync(sql) > 0;
+
+            return inserted;
         }
     }
 }
