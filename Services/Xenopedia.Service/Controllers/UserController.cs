@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Xenopedia.Business.UserService;
 using Xenopedia.Entities.DTO.User;
 
 namespace Xenopedia.Service.Controllers
@@ -7,15 +8,27 @@ namespace Xenopedia.Service.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
+        private readonly IUserService userService;
+
+        public UserController(IUserService userService) 
+        {
+            this.userService = userService;
+        }
+
         [AllowAnonymous]
         [HttpPost("LoginUser")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequestDTO loginRequest)
         {
-            // Authenticate User
+            UserDTO user = await userService.AuthenticateUser(loginRequest);
 
-            // If auth is SUCCESS generate TOKEN
+            if (user == null) 
+            {
+                return new BadRequestResult();
+            }
 
-            return Ok(string.Empty);
+            string token = userService.GenerateUserToken(user);
+
+            return Ok(token);
         }
     }
 }

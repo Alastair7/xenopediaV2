@@ -6,6 +6,6 @@ namespace Xenopedia.Business.UserService
     {
         Task<UserDTO> AuthenticateUser(UserLoginRequestDTO loginRequest);
 
-        Task<string> GenerateUserToken(UserDTO user);
+        string GenerateUserToken(UserDTO user);
     }
 }

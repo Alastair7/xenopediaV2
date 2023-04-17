@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Xenopedia.Business.TextService;
 using Xenopedia.Commons.Enums;
 using Xenopedia.Entities.DTO.Text;
@@ -6,6 +7,7 @@ using Xenopedia.Entities.DTO.Text;
 namespace Xenopedia.Service.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class TextController : ControllerBase
     {
