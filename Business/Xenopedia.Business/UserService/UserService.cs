@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Xenopedia.Entities.DTO.User;
+using Xenopedia.Entities.Entity.User;
 
 namespace Xenopedia.Business.UserService
 {
