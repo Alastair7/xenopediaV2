@@ -3,6 +3,7 @@ using AutoMapper;
 using Xenopedia.Business.Mapper;
 using Xenopedia.Business.TextService;
 using Xenopedia.Commons.Database;
+using Xenopedia.Commons.Security.Auth;
 using Xenopedia.Entities.DTO.Text;
 using Xenopedia.Entities.Entity.Text;
 using Xenopedia.Infrastructure.Text;
@@ -17,6 +18,7 @@ namespace Xenopedia.Service.Autofac
             builder.RegisterType<TextRepository>().As<ITextRepository>().InstancePerLifetimeScope();
             builder.RegisterType<TextMapper>().As<ITextMapper>().InstancePerLifetimeScope();
             builder.RegisterType<DatabaseManager>().As<IDatabaseManager>().InstancePerLifetimeScope();
+            builder.RegisterType<AuthManager>().As<IAuthManager>().InstancePerLifetimeScope();
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {
@@ -24,6 +26,7 @@ namespace Xenopedia.Service.Autofac
                 cfg.CreateMap<NewTextRequestDTO, TextEntity>();
                 //etc...
             })).AsSelf().SingleInstance();
+
             builder.Register(m =>
             {
                 var context = m.Resolve<IComponentContext>();

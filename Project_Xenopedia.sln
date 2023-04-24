@@ -5,23 +5,27 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{19432427-322E-40F3-98FE-57BB62F74FA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenopedia.Business", "Business\Xenopedia.Business\Xenopedia.Business.csproj", "{BEF00904-98C6-4CDA-B105-8A81A962958B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xenopedia.Business", "Business\Xenopedia.Business\Xenopedia.Business.csproj", "{BEF00904-98C6-4CDA-B105-8A81A962958B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3E9B3BE5-3C31-46E0-AE11-6D9C4313A472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenopedia.Infrastructure", "Infrastructure\Xenopedia.Infrastructure\Xenopedia.Infrastructure.csproj", "{84BA2244-233E-487F-9E46-9B624FAEC059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xenopedia.Infrastructure", "Infrastructure\Xenopedia.Infrastructure\Xenopedia.Infrastructure.csproj", "{84BA2244-233E-487F-9E46-9B624FAEC059}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{3815A2C3-9225-41E5-99A8-9AE609EA5D4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenopedia.Commons", "Commons\Xenopedia.Commons\Xenopedia.Commons.csproj", "{180F6F47-F9E5-430C-967E-AEB19E6928D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xenopedia.Commons", "Commons\Xenopedia.Commons\Xenopedia.Commons.csproj", "{180F6F47-F9E5-430C-967E-AEB19E6928D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{D1ADDE44-4CB8-4F4E-B1C9-826E35D428BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenopedia.Entities", "Entities\Xenopedia.Entities\Xenopedia.Entities.csproj", "{8C4C159E-828E-4AC1-8A93-F226831CD482}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xenopedia.Entities", "Entities\Xenopedia.Entities\Xenopedia.Entities.csproj", "{8C4C159E-828E-4AC1-8A93-F226831CD482}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{BF93AFFD-E38A-4CE2-90D8-0C5C579E6F9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenopedia.Service", "Services\Xenopedia.Service\Xenopedia.Service.csproj", "{0CD06B1D-A6F7-420A-9C4A-7E8DD12A0A54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xenopedia.Service", "Services\Xenopedia.Service\Xenopedia.Service.csproj", "{0CD06B1D-A6F7-420A-9C4A-7E8DD12A0A54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F613EE78-CF3C-4BDD-8166-D42E51AD0ADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenopedia.Tests", "Tests\Xenopedia.Tests\Xenopedia.Tests.csproj", "{BFA8CDBC-28B8-43A5-8494-318AF20E45BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{0CD06B1D-A6F7-420A-9C4A-7E8DD12A0A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CD06B1D-A6F7-420A-9C4A-7E8DD12A0A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD06B1D-A6F7-420A-9C4A-7E8DD12A0A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFA8CDBC-28B8-43A5-8494-318AF20E45BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA8CDBC-28B8-43A5-8494-318AF20E45BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA8CDBC-28B8-43A5-8494-318AF20E45BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA8CDBC-28B8-43A5-8494-318AF20E45BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{180F6F47-F9E5-430C-967E-AEB19E6928D8} = {3815A2C3-9225-41E5-99A8-9AE609EA5D4A}
 		{8C4C159E-828E-4AC1-8A93-F226831CD482} = {D1ADDE44-4CB8-4F4E-B1C9-826E35D428BA}
 		{0CD06B1D-A6F7-420A-9C4A-7E8DD12A0A54} = {BF93AFFD-E38A-4CE2-90D8-0C5C579E6F9F}
+		{BFA8CDBC-28B8-43A5-8494-318AF20E45BA} = {F613EE78-CF3C-4BDD-8166-D42E51AD0ADB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9949D84C-1FBF-4B46-B84A-42F989660C17}

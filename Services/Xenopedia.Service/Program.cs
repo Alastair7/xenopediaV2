@@ -12,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Configure Autofac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacModule()); });
+
+// Configure Security
 builder.Configuration.AddEnvironmentVariables()
                      .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -28,6 +30,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("APP KEY FROM CONFIGURATION"))
         };
     });
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
