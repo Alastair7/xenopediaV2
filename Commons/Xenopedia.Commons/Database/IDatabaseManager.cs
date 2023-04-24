@@ -4,6 +4,6 @@ namespace Xenopedia.Commons.Database
 {
     public interface IDatabaseManager
     {
-        string GetConnectionString();
+        MySqlConnection ConnectDB();
     }
 }

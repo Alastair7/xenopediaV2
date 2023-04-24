@@ -12,10 +12,11 @@ namespace Xenopedia.Commons.Database
             this.config = config;
         }
 
-        public string GetConnectionString()
+        public MySqlConnection ConnectDB()
         {
             string connectionString = config["DATABASE_CONNECTION"] ?? string.Empty;
-            return connectionString;
+
+            return new MySqlConnection(connectionString);
         }
     }
 }
