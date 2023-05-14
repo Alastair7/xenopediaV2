@@ -43,6 +43,35 @@ namespace Xenopedia.Commons.Security.Auth
             
         }
 
+        public int? ValidateToken(string token)
+        {
+            if (token == null) return null;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(token); // Change token by app secrets.
+
+            try 
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters 
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = validatedToken as JwtSecurityToken;
+                int userId = int.Parse(jwtToken.Claims.First(x => x.Type.Equals("id")).Value);
+
+                return userId;
+            }
+            catch 
+            {
+                return null;
+            }
+        }
+
         private bool ValidateCredentials(string username, string password) 
         {
             bool isValid = true;

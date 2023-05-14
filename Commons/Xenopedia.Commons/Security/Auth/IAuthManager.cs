@@ -3,5 +3,7 @@
     public interface IAuthManager
     {
         string GenerateToken(string username, string password);
+
+        int? ValidateToken(string token);
     }
 }

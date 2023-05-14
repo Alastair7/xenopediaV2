@@ -8,11 +8,11 @@ namespace Xenopedia.Infrastructure.Text
 {
     public class TextRepository : ITextRepository
     {
-        private readonly IDatabaseManager databaseManager;
+        private readonly IDatabaseManager dbManager;
 
         public TextRepository(IDatabaseManager databaseManager) 
         {
-            this.databaseManager = databaseManager;
+            this.dbManager = databaseManager;
         }
 
         public async Task<bool> DeleteText(long idText)
@@ -53,6 +53,17 @@ namespace Xenopedia.Infrastructure.Text
 
         public async Task<bool> InsertText(TextEntity text)
         {
+            MySqlConnection connection = dbManager.ConnectDB();
+
+            try 
+            {
+            }
+            catch 
+            {
+            }
+            finally 
+            {
+            }
             using var connection = new MySqlConnection("server=aws.connect.psdb.cloud;user=di6x5rp8ve6g5xm08utr;database=xenopedia_db;port=3306;password=pscale_pw_GonCS6PVOcXywfBSTtVgDjqnSKcJCAQMB2GtwfgGX2p;SslMode=VerifyFull");
             bool inserted;
 

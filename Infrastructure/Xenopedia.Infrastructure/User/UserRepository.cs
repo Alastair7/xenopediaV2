@@ -1,10 +1,8 @@
 ﻿using Dapper;
-using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using System.Data;
 using Xenopedia.Commons.Database;
 using Xenopedia.Entities.Entity.User;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Xenopedia.Infrastructure.User
 {
