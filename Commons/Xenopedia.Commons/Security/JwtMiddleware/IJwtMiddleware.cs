@@ -5,6 +5,6 @@ namespace Xenopedia.Commons.Security.JwtMiddleware
 {
     public interface IJwtMiddleware
     {
-        Task Invoke(HttpContext context, IUserService userService, IAuthManager authManager);
+        Task Invoke(HttpContext context, IAuthManager authManager);
     }
 }

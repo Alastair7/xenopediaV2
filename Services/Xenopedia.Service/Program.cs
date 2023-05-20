@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
+using Xenopedia.Commons.Security.JwtMiddleware;
 using Xenopedia.Service.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,18 +17,18 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).Conf
 // Configure Security
 builder.Configuration.AddEnvironmentVariables()
                      .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => 
     {
+        options.Authority = "https://securetoken.google.com/PROJECT-ID";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
+            ValidIssuer = "https://securetoken.google.com/PROJECT-ID",
             ValidateAudience = true,
+            ValidAudience = "PROJECT-ID",
             ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "",
-            ValidAudience = "",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("APP KEY FROM CONFIGURATION"))
         };
     });
 
@@ -38,6 +39,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseJwtMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
