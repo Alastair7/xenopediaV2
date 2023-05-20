@@ -7,7 +7,7 @@ using Xenopedia.Entities.DTO.Text;
 namespace Xenopedia.Service.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [Route("[controller]")]
     public class TextController : ControllerBase
     {

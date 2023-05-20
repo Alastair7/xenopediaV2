@@ -14,7 +14,7 @@ namespace Xenopedia.Commons.Database
 
         public MySqlConnection ConnectDB()
         {
-            string connectionString = config["DATABASE_CONNECTION"] ?? string.Empty;
+            string connectionString = config.GetValue<string>("Database:ConnectionString") ?? string.Empty;
 
             return new MySqlConnection(connectionString);
         }

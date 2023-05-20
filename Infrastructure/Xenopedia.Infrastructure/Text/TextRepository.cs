@@ -30,12 +30,25 @@ namespace Xenopedia.Infrastructure.Text
 
         public async Task<IEnumerable<TextEntity>> GetAllText()
         {
-            using var connection = new MySqlConnection("server=aws.connect.psdb.cloud;user=di6x5rp8ve6g5xm08utr;database=xenopedia_db;port=3306;password=pscale_pw_GonCS6PVOcXywfBSTtVgDjqnSKcJCAQMB2GtwfgGX2p;SslMode=VerifyFull");
             IEnumerable<TextEntity> result;
 
-            var sql = "SELECT * FROM text;";
+            MySqlConnection connection = dbManager.ConnectDB();
 
-            result = await connection.QueryAsync<TextEntity>(sql);
+            if (connection.State != ConnectionState.Open) connection.Open();
+
+            try
+            {
+                var sql = TextRepositoryQueries.GetAllText;
+                result = await connection.QueryAsync<TextEntity>(sql);
+            }
+            catch (Exception)
+            {
+                result = null;
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open) connection.Close();
+            }
 
             return result;
         }
@@ -74,17 +87,18 @@ namespace Xenopedia.Infrastructure.Text
             {
                 connection.Open();
             }
-            var transaction = connection.BeginTransaction();
+            //var transaction = connection.BeginTransaction();
 
             try 
             {
                     var sql = TextRepositoryQueries.InsertText;
-                    inserted = await connection.ExecuteAsync(sql, text, transaction: transaction) > 0;
-                    transaction.Commit();
+                    inserted = await connection.ExecuteAsync(sql, text) > 0;
+                    //transaction.Commit();
             }
             catch (Exception)
             {
-                transaction.Rollback();
+                //transaction.Rollback();
+                inserted = false;
             }
             finally 
             {

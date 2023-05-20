@@ -1,18 +1,20 @@
 using Autofac;
-using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
-using System.Text;
-using Xenopedia.Commons.Security.JwtMiddleware;
 using Xenopedia.Service.Autofac;
+using Xenopedia.Service.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Configure Autofac
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacModule()); });
+builder.Host.UseServiceProviderFactory(
+    new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacModule()); });
+
+builder.Host.ConfigureAppSettings();
 
 // Configure Security
 builder.Configuration.AddEnvironmentVariables()
@@ -39,13 +41,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseJwtMiddleware();
+//app.UseJwtMiddleware();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 

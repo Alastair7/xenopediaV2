@@ -61,6 +61,15 @@ namespace Xenopedia.Infrastructure.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM text;.
+        /// </summary>
+        internal static string GetAllText {
+            get {
+                return ResourceManager.GetString("GetAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM text WHERE IdText = @idText;.
         /// </summary>
         internal static string GetTextById {
